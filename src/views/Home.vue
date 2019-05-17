@@ -99,7 +99,8 @@ export default {
       opt2per: 0,
       opt3per: 0,
       opt4per: 0,
-      optionclickable: true
+      optionclickable: true,
+      multipleclick: true
     };
   },
   mounted() {
@@ -138,6 +139,7 @@ export default {
       this.questionsectionshow = 0;
       this.votesectionshow = 1;
       this.optionclickable = true;
+      this.multipleclick = true;
       this.opt1per = 0;
       this.opt2per = 0;
       this.opt3per = 0;
@@ -148,7 +150,8 @@ export default {
       this.votesectionshow = 0;
     },
     optionclicked(optno) {
-      if (this.optionclickable) {
+      if (this.optionclickable && this.multipleclick) {
+        this.multipleclick = false;
         if (optno === 1) {
           this.polldata[this.clickpollindex].vot1 += 1;
         } else if (optno === 2) {
@@ -214,6 +217,7 @@ export default {
               position: "bottomCenter",
               icon: "fas fa-exclamation-circle"
             });
+            this.multipleclick = true;
             //Error during Vote
           });
       } else {

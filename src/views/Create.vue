@@ -4,15 +4,13 @@
     <center>
       <div :class="$style.maincontainer">
         <div :class="$style.centertext">Create a Poll</div>
-        <form>
-          <input :class="$style.inputbox" placeholder="Question" v-model="inques">
-          <input :class="$style.inputbox" placeholder="Option 1" v-model="inopt1">
-          <input :class="$style.inputbox" placeholder="Option 2" v-model="inopt2">
-          <input :class="$style.inputbox" placeholder="Option 3" v-model="inopt3">
-          <input :class="$style.inputbox" placeholder="Option 4" v-model="inopt4">
-          <br>
-          <button :class="$style.buttonbox" v-on:click="senddata()">Create</button>
-        </form>
+        <input :class="$style.inputbox" placeholder="Question" v-model="inques">
+        <input :class="$style.inputbox" placeholder="Option 1" v-model="inopt1">
+        <input :class="$style.inputbox" placeholder="Option 2" v-model="inopt2">
+        <input :class="$style.inputbox" placeholder="Option 3" v-model="inopt3">
+        <input :class="$style.inputbox" placeholder="Option 4" v-model="inopt4">
+        <br>
+        <button :class="$style.buttonbox" v-on:click="senddata()">Create</button>
       </div>
     </center>
   </div>
