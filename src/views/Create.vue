@@ -31,76 +31,100 @@ export default {
       inopt1: "",
       inopt2: "",
       inopt3: "",
-      inopt4: ""
+      inopt4: "",
+      onceclicked: false
     };
   },
   methods: {
     senddata() {
-      if (
-        this.inques.length === 0 ||
-        this.inopt1.length === 0 ||
-        this.inopt2 === "" ||
-        this.inopt3 === "" ||
-        this.inopt4 === ""
-      ) {
-        iziToast.show({
-          title: "Error",
-          message: "Please fill all the fields",
-          color: "red",
-          position: "bottomCenter",
-          icon: "fas fa-exclamation-circle"
-        });
-        console.log("Please Fill All The Fields");
-      } else {
+      if (!this.onceclicked) {
+        this.onceclicked = true;
         if (
-          this.inques.length > 50 ||
-          this.inopt1.length > 50 ||
-          this.inopt2 > 50 ||
-          this.inopt3 > 50 ||
-          this.inopt4 > 50
+          this.inques.length === 0 ||
+          this.inopt1.length === 0 ||
+          this.inopt2 === "" ||
+          this.inopt3 === "" ||
+          this.inopt4 === ""
         ) {
           iziToast.show({
             title: "Error",
-            message: "No more than 50 characters allowed in each of the field",
+            message: "Please fill all the fields",
             color: "red",
             position: "bottomCenter",
             icon: "fas fa-exclamation-circle"
           });
-          console.log(
-            "No more than 50 characters allowed in each of the field"
-          );
+          console.log("Please Fill All The Fields");
+          this.onceclicked = false;
         } else {
-          // Real Code
-          axios
-            .post(`https://pollswrp.herokuapp.com/questions/`, {
-              ques: this.inques,
-              opt1: this.inopt1,
-              opt2: this.inopt2,
-              opt3: this.inopt3,
-              opt4: this.inopt4,
-              vot1: 0,
-              vot2: 0,
-              vot3: 0,
-              vot4: 0
-            })
-            .then(response => {
-              iziToast.show({
-                title: "Success",
-                message: "Poll Created",
-                color: "green",
-                position: "bottomCenter",
-                icon: "fas fa-check"
-              });
-              this.inques = "";
-              this.inopt1 = "";
-              this.inopt2 = "";
-              this.inopt3 = "";
-              this.inopt4 = "";
-            })
-            .catch(e => {
-              console.log(e);
+          if (
+            this.inques.length > 50 ||
+            this.inopt1.length > 50 ||
+            this.inopt2 > 50 ||
+            this.inopt3 > 50 ||
+            this.inopt4 > 50
+          ) {
+            iziToast.show({
+              title: "Error",
+              message:
+                "No more than 50 characters allowed in each of the field",
+              color: "red",
+              position: "bottomCenter",
+              icon: "fas fa-exclamation-circle"
             });
+            console.log(
+              "No more than 50 characters allowed in each of the field"
+            );
+            this.onceclicked = false;
+          } else {
+            // Real Code
+            axios
+              .post(`https://pollswrp.herokuapp.com/questions/`, {
+                ques: this.inques,
+                opt1: this.inopt1,
+                opt2: this.inopt2,
+                opt3: this.inopt3,
+                opt4: this.inopt4,
+                vot1: 0,
+                vot2: 0,
+                vot3: 0,
+                vot4: 0
+              })
+              .then(response => {
+                iziToast.show({
+                  title: "Success",
+                  message: "Poll Created",
+                  color: "green",
+                  position: "bottomCenter",
+                  icon: "fas fa-check"
+                });
+                this.inques = "";
+                this.inopt1 = "";
+                this.inopt2 = "";
+                this.inopt3 = "";
+                this.inopt4 = "";
+                this.onceclicked = false;
+              })
+              .catch(e => {
+                console.log(e);
+                iziToast.show({
+                  title: "Error",
+                  message: "Could not create the poll",
+                  color: "red",
+                  position: "bottomCenter",
+                  icon: "fas fa-exclamation-circle"
+                });
+                this.onceclicked = false;
+              });
+          }
         }
+      } else {
+        iziToast.show({
+          title: "Error",
+          message: "Poll Create Request Already Sent",
+          color: "red",
+          position: "bottomCenter",
+          icon: "fas fa-exclamation-circle"
+        });
       }
     }
   }
