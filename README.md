@@ -10,3 +10,4 @@ This is a responsive web application made using VueJS and Django frameworks. Thi
 - VueJS for frontend
 - Axios for api consuption
 - Bootstrap notify.js
+- Izitoast notify.js
