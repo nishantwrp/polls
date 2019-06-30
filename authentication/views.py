@@ -5,8 +5,10 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework import status
 from rest_framework import permissions
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 # @api_view(['POST'])
+@csrf_exempt
 class RegisterView(generics.GenericAPIView):
     """
     Registers A New User On Polls App If Email Does Not Exist Already Otherwise Returns An Error
@@ -36,7 +38,7 @@ class RegisterView(generics.GenericAPIView):
             loginit = authenticate(username=username, password=request.data['password'])
             login(request, loginit)
             return self.give_response("user_registered")
-
+@csrf_exempt
 class LogoutView(generics.GenericAPIView):
     """
     Logout The User From Current Session
@@ -54,7 +56,7 @@ class LogoutView(generics.GenericAPIView):
         self.request = request
         logout(request)
         return self.give_response("logged_out")
-
+@csrf_exempt
 class LoginView(generics.GenericAPIView):
     """
     Check the credentials and logs in the user
@@ -78,7 +80,7 @@ class LoginView(generics.GenericAPIView):
             return self.give_response("logged_in")
         except:
             return self.give_response("invalid_credentials")
-
+@csrf_exempt
 class AuthenticationView(generics.GenericAPIView):
     """
     Returns the name of current authenticated user
@@ -101,7 +103,7 @@ class AuthenticationView(generics.GenericAPIView):
             return self.give_response(True,name)
         else:
             return self.give_response(False,"anonymous")
-        
+@csrf_exempt      
 class ChangePasswordView(generics.GenericAPIView):
     """
     Handles the password change request of the user
