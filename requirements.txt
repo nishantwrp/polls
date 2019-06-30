@@ -17,7 +17,6 @@ itypes==1.1.0
 Jinja2==2.10.1
 jsonschema==3.0.1
 MarkupSafe==1.1.1
-pkg-resources==0.0.0
 psycopg2==2.8.3
 pyrsistent==0.15.2
 pytz==2019.1
