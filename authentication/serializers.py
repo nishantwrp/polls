@@ -15,10 +15,11 @@ class LoginSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username','password')
 
-class AuthenticationSerializer(serializers.Serializer):
-    authenticated = serializers.BooleanField()
-    name = serializers.CharField(max_length=200)
-
 class ChangePasswordSerializer(serializers.Serializer):
     current_password = serializers.CharField(max_length=500)
     new_password = serializers.CharField(max_length=500)
+
+class TokenResponseSerializer(serializers.Serializer):
+    message = serializers.CharField(max_length=500)
+    token = serializers.CharField(max_length=500)
+    name = serializers.CharField(max_length=500)
