@@ -5,6 +5,8 @@ import Home from "./views/Home.vue";
 Vue.use(Router);
 
 export default new Router({
+  mode: "history",
+  base: process.env.BASE_URL,
   routes: [
     {
       path: "/",
@@ -12,18 +14,39 @@ export default new Router({
       component: Home
     },
     {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
+      path: "/dashboard",
+      name: "dashboard",
+      component: () => import("./views/Dashboard.vue")
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: () => import("./views/Register.vue")
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: () => import("./views/Login.vue")
     },
     {
       path: "/create",
       name: "create",
       component: () => import("./views/Create.vue")
+    },
+    {
+      path: "/password",
+      name: "password",
+      component: () => import("./views/Password.vue")
+    },
+    {
+      path: "/poll/:id",
+      name: "poll",
+      component: () => import("./views/Poll.vue")
+    },
+    {
+      path: "/*",
+      name: "404",
+      component: () => import("./views/404.vue")
     }
   ]
 });

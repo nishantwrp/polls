@@ -1,16 +1,15 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+  <router-view></router-view>
 </template>
+
 <script>
 export default {
-  components: {}
+  name: "App",
+  components: {},
+  data() {
+    return {
+      //
+    };
+  }
 };
 </script>
-
-<style lang="stylus">
-#app {
-  text-align: center;
-}
-</style>
