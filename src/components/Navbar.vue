@@ -119,23 +119,13 @@ export default {
   },
   methods: {
     signOut() {
-      var headers = {
-        "Content-Type": "application/json",
-        Authorization: "Token " + this.token
-      };
-      axios
-        .get(`https://pollswrp.herokuapp.com/auth/logout/`, {
-          headers: headers
-        })
-        .then(result => {
-          this.response = result.data;
-          if (this.response["message"] === "logged_out") {
+     
+      
             localStorage.removeItem("token");
             localStorage.removeItem("name");
             localStorage.removeItem("loggedIn");
             this.$router.push("/");
-          }
-        });
+      
     }
   }
 };
