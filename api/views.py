@@ -46,7 +46,7 @@ class PollCreateView(generics.GenericAPIView):
     serializer_class = PollCreateSerializer
     permission_classes = (permissions.IsAuthenticated,)
     def give_response(self,question,pstatus,id):
-        response = CreatedPollsSerializer({
+        response = PollsSerializer({
             'question' : question,
             'status': pstatus,
             'id':id
