@@ -31,9 +31,10 @@ class VoteSerializer(serializers.Serializer):
 
 
 class PollVotesResponseSerializer(serializers.ModelSerializer):
+    is_owner = serializers.BooleanField()
     class Meta:
         model = poll
-        fields = ('votes_1','votes_2','votes_3','votes_4')
+        fields = ('votes_1','votes_2','votes_3','votes_4','is_owner')
 
 class CreatedAndParticipatedPollsSerializer(serializers.Serializer):
     created = PollsSerializer(many=True)

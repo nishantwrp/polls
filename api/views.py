@@ -164,11 +164,15 @@ class PollVotesView(generics.GenericAPIView):
         except:
             return self.give_response("invalid_id")
         if ((len(vote.objects.filter(voter=user,poll=current_poll)) != 0) or (current_poll.creator == user)):
+            is_owner = False
+            if current_poll.creator == user:
+                is_owner = True
             response = PollVotesResponseSerializer({
                 'votes_1': current_poll.votes_1,
                 'votes_2': current_poll.votes_2,
                 'votes_3': current_poll.votes_3,
                 'votes_4': current_poll.votes_4,
+                'is_owner': is_owner
             })
             return Response(response.data,status.HTTP_200_OK)
         else:
