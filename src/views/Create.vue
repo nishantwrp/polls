@@ -56,7 +56,7 @@
                   ></v-text-field>
                 </v-card-text>
                 <v-card-actions>
-                  <v-btn v-on:click="submitForm" flat color="secondary">Create</v-btn>
+                  <v-btn :disabled="disabled" v-on:click="submitForm" flat color="secondary">Create</v-btn>
                 </v-card-actions>
               </v-card>
             </v-hover>
@@ -106,6 +106,7 @@ export default {
     option_3: "",
     option_4: "",
     token: "",
+    disabled: false,
     response: []
   }),
   components: { Navbar, Footer },
@@ -129,6 +130,7 @@ export default {
     },
     submitForm() {
       if (this.validateData()) {
+        this.disabled = true;
         var headers = {
           "Content-Type": "application/json",
           Authorization: "Token " + this.token

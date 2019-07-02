@@ -34,8 +34,11 @@
       ></v-radio>
     </v-radio-group>
                 </v-card-text>
-               <v-card-actions>
+               <v-card-actions v-if="disabled === false">
                    <v-btn :disabled="!islogged" v-on:click="submitVote" flat color="secondary" >Vote</v-btn>
+               </v-card-actions>
+               <v-card-actions v-else>
+                   <v-btn disabled v-on:click="submitVote" flat color="secondary" >Vote</v-btn>
                </v-card-actions>
                <v-snackbar v-model="snackbar" :color="color" :timeout="timeout">
         {{ text }}
@@ -116,6 +119,7 @@ export default {
         color: "",
         timeout: 3000,
         text: "",
+        disabled: false,
         choice: 0,
         islogged: false,
         token: "",
@@ -155,6 +159,7 @@ export default {
         if (this.choice === 0) {
           this.showSnackbar("error","Choose A Option");
         } else {
+          this.disabled = true;
           var headers = {
           "Content-Type": "application/json",
           'Authorization': "Token " + this.token
