@@ -65,7 +65,7 @@
 <script>
 import Navbar from "../components/Navbar.vue";
 import Footer from "../components/Footer";
-
+var customAuth = require('../scripts/authentication');
 export default {
   data: () => ({
     items: [
@@ -83,6 +83,7 @@ export default {
     if (localStorage.getItem("loggedIn") === "true") {
       this.isLogged = true;
     }
+    customAuth.notloggedin(this);
   }
 };
 </script>
