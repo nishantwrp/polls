@@ -7,7 +7,7 @@ This is a web application made using VueJS and Django frameworks. This applicati
 ### Technical Stack Frontend
 - VueJS Frontend Framework
 - Axios for api consuption
-- Vuetify Material UI
+- Vuetify Material    UI
 ### Technical Stack Backend
 - Django
 - Django Rest Framework
