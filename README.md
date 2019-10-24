@@ -14,7 +14,7 @@ This is a web application made using VueJS and Django frameworks. This applicati
 - drf-yasg Swagger API
 ### Acknowledgements
 - Netlify
-- Font Awesome
+- Font Awesome 
 - Stylus
 
 
