@@ -15,6 +15,6 @@ This is a web application made using VueJS and Django frameworks. This applicati
 ### Acknowledgements
 - Netlify
 - Font Awesome
-- Stylus
+- Stylus 
 
 
